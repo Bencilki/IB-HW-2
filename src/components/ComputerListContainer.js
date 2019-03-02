@@ -7,7 +7,7 @@ class ComputerListContainer extends React.Component{
     
 
    render() {
-    return <ComputerList compModels={this.props.selectModel} />
+    return <ComputerList />
 }
 }
 

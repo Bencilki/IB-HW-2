@@ -45,7 +45,8 @@ class App extends Component {
 
   updateSelection = (select) => {
     let showComp = select.target.value;
-    this.setState({
+      this.setState({
+      
       selectValue: showComp
     })
 
@@ -66,6 +67,7 @@ class App extends Component {
         {this.modelList()}
         </select>
         <button onClick={this.showSelected}>Add</button>
+      
         </form>
       </div>
     );
@@ -80,4 +82,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {showSelected, modelList, updateSelection})(App)
+export default connect(mapStateToProps)(App)
