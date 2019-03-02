@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ComputerListContainer from './components/ComputerListContainer'
 
 const data = {
   "Ivel Z3": {
@@ -25,7 +26,7 @@ const data = {
 }
 
 class App extends Component {
-  state ={}
+  state =[]
 
   modelList =() => {
     let list =[];
@@ -36,13 +37,26 @@ class App extends Component {
     return list
   }
 
+  updateSelection = () => {
+
+  }
+
+  handleChange(event){
+    this.setState({value: event.target.value})
+  }
+  handleSubmit(event){
+    
+  }
+
   render() {
     return (
       <div className="App">
-        <select>
+        <ComputerListContainer />
+        <select value = {this.state.value} onChange= {this.handleChange}>
           <option key='0' value= 'list'>-- pick a model --</option>
           {this.modelList()}
         </select>
+        
       </div>
     );
   }
