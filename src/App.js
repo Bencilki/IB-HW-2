@@ -27,12 +27,21 @@ const data = {
 class App extends Component {
   state ={}
 
+  modelList =() => {
+    let list =[];
+    for(let models in data){
+      const model = data[models]
+      list.push(<option key={models} value={models}> {`${models} (${model.year})`}</option>)
+    }
+    return list
+  }
 
   render() {
     return (
       <div className="App">
         <select>
-          <option></option>
+          <option key='0' value= 'list'>-- pick a model --</option>
+          {this.modelList()}
         </select>
       </div>
     );
