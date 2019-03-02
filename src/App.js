@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import ComputerListContainer from './components/ComputerListContainer'
+import {connect} from 'react-redux'
+
 
 const data = {
   "Ivel Z3": {
@@ -26,7 +28,11 @@ const data = {
 }
 
 class App extends Component {
-  state =[]
+  state ={
+    selectModel:''
+  }
+  
+  
 
   modelList =() => {
     let list =[];
@@ -37,29 +43,41 @@ class App extends Component {
     return list
   }
 
-  updateSelection = () => {
+  updateSelection = (select) => {
+    let showComp = select.target.value;
+    this.setState({
+      selectValue: showComp
+    })
 
   }
 
-  handleChange(event){
-    this.setState({value: event.target.value})
-  }
-  handleSubmit(event){
-    
+  showSelected =() => {
+    const showModel = Object.assign({name:this.state.selectValue}, data[this.state.selectValue])
+    this.props.selectModel(showModel)
   }
 
   render() {
     return (
       <div className="App">
         <ComputerListContainer />
+        <form>
         <select value = {this.state.value} onChange= {this.handleChange}>
-          <option key='0' value= 'list'>-- pick a model --</option>
-          {this.modelList()}
+        <option key='0' value= 'list'>-- pick a model --</option>
+        {this.modelList()}
         </select>
-        
+        <button onClick={this.showSelected}>Add</button>
+        </form>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    showSelected: state.showSelected,
+    modelList: state.modelList,
+    updateSelection: state.updateSelection
+  }
+}
+
+export default connect(mapStateToProps, {showSelected, modelList, updateSelection})(App)

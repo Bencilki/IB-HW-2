@@ -1,31 +1,21 @@
 import * as React from 'react'
 import ComputerList from './ComputerList'
 import {connect} from 'react-redux'
+import {selectModel} from '../actions/action'
 
 class ComputerListContainer extends React.Component{
-    selectModel(models) {
-        console.log('selected', models)
-    }
-    selectModel = (models) => {
-        this.props.dispatch({
-            type: 'SELECT_MODEL',
-            payload: models
-        })
-    }
+    
 
-    render(){
-        return <ComputerList 
-        models={this.props.models} 
-        selectModel={this.selectModel}/>
-        
-    }
+   render() {
+    return <ComputerList compModels={this.props.selectModel} />
+}
 }
 
 const mapStateToProps = (state) => {
     return {
-        models: state.models,
+        compDetail: state.compDetail,
         selectModel: state.selectModel
     }
 }
 
-export default connect(mapStateToProps)(ComputerListContainer)
+export default connect(mapStateToProps, {selectModel})(ComputerListContainer)

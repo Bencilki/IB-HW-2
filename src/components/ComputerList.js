@@ -2,12 +2,19 @@ import * as React from 'react'
 
 
 export default function ComputerList(props){
-    return (<div>
-         <ul>
-             { props.models.map(model => 
-                <li key={model.name} onClick={() => props.selectModel(model.name)}>
-                { model.name }
-              </li>)}
-        </ul>
-    </div>)
+    const compModels = props.compModels
+
+    return (
+    <div>
+         {this.props.compModels.map(comp =>
+            <ul key= {compModels}>
+                <li>{`name : ${comp.name}` }</li>
+                <li>{`manufacturer : ${comp.manufacturer}` }</li>
+                <li>{`year : ${comp.year}` }</li>
+                <li>{`origin : ${comp.origin}` }</li>
+                
+            </ul>
+         )}
+    </div>
+    )
 }
